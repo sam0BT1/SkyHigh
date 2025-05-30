@@ -6,65 +6,40 @@
     <title>SkyHigh.com</title>
     <link rel="stylesheet" href="a.css">
 </head>
-  <header>
-<style>
-    /* ===== CORE VARIABLES ===== */
+<header>
+  <style>
     :root {
-      /* Colors */
       --space-blue: #0b3d91;
       --space-dark: #040f2a;
-      --space-light: #e6f7ff;
       --accent: #ff4d4f;
       --white: #ffffff;
-      --black: #000000;
-      
-      /* Typography */
-      --text-xs: 0.75rem;  /* 12px */
-      --text-sm: 0.875rem; /* 14px */
-      --text-base: 1rem;   /* 16px */
-      --text-md: 1.125rem; /* 18px */
-      --text-lg: 1.5rem;   /* 24px */
-      --text-xl: 2rem;     /* 32px */
-      
-      /* Spacing */
-      --space-1: 0.25rem;  /* 4px */
-      --space-2: 0.5rem;   /* 8px */
-      --space-3: 0.75rem;  /* 12px */
-      --space-4: 1rem;     /* 16px */
-      --space-5: 1.5rem;   /* 24px */
-      --space-6: 2rem;     /* 32px */
-      
-      /* Shadows */
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-      
-      /* Transitions */
+
+      --text-md: 1.125rem;
+      --text-xl: 2rem;
+
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+
       --transition-fast: 0.15s ease;
-      --transition-normal: 0.3s ease;
     }
 
-    /* ===== NAVIGATION ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-     body {
-      padding-top: 60px; /* Offset for fixed header */
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    body {
+      font-family: 'Inter', sans-serif;
     }
 
-   
-
     header {
-      position: fixed;
-      top: 0;
       width: 100%;
-      z-index: 1000;
-      background-color:rgb(56, 49, 49);
-      backdrop-filter: blur(10px);
+      background-color: rgb(56, 49, 49);
       padding: var(--space-3) var(--space-4);
-      transition: var(--transition-normal);
+      z-index: 1000;
     }
 
     nav {
@@ -86,18 +61,28 @@
       transform: translateX(-50%);
     }
 
+    .nav-group-left,
+    .nav-group-right {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: var(--text-xl);
+      cursor: pointer;
+      margin-left: auto;
+    }
+
     .nav-links {
-      display: none; /* Hidden by default on mobile */
-      position: fixed;
-      top: 60px;
-      left: 0;
+      display: none;
       width: 100%;
       background-color: var(--space-blue);
       flex-direction: column;
       padding: var(--space-4);
-      box-shadow: var(--shadow-md);
       list-style: none;
-      z-index: 999;
     }
 
     .nav-links.active {
@@ -113,58 +98,28 @@
       color: var(--white);
       font-size: var(--text-md);
       text-decoration: none;
-      padding: var(--space-2) 0;
-      transition: var(--transition-fast);
+      padding: var(--space-3) 0;
       display: block;
+      transition: var(--transition-fast);
     }
 
     .nav-links a:hover {
       color: var(--accent);
     }
 
-    .mobile-menu-btn {
-      display: block;
-      background: none;
-      border: none;
-      color: var(--white);
-      font-size: var(--text-xl);
-      cursor: pointer;
-      padding: var(--space-2);
-      margin-left: auto; /* Push to right side */
-    }
-
-    /* Left navigation group */
-    .nav-group-left {
-      display: none;
-    }
-
-    /* Right navigation group */
-    .nav-group-right {
-      display: none;
-    }
-
-    /* Desktop Navigation */
     @media (min-width: 901px) {
       .mobile-menu-btn {
         display: none;
       }
-    
+
       .nav-links {
-        display: none; /* Hide the mobile menu completely */
+        display: none !important;
       }
 
       .nav-group-left,
       .nav-group-right {
         display: flex;
         gap: var(--space-4);
-      }
-
-      .nav-group-left {
-        margin-right: auto; /* Push to left side */
-      }
-
-      .nav-group-right {
-        margin-left: auto; /* Push to right side */
       }
 
       .logo {
@@ -177,9 +132,18 @@
         justify-content: center;
       }
 
+      .nav-group-left {
+        margin-right: auto;
+      }
+
+      .nav-group-right {
+        margin-left: auto;
+      }
+
       .nav-group-left a,
       .nav-group-right a {
         color: white;
+        text-decoration: none;
         position: relative;
       }
 
@@ -191,10 +155,8 @@
         left: 0;
         width: 0;
         height: 2px;
-        color: white;
         background-color: var(--accent);
         transition: var(--transition-fast);
-         
       }
 
       .nav-group-left a:hover::after,
@@ -203,56 +165,50 @@
       }
     }
 
-    /* Demo content - can be removed */
     main {
       padding: var(--space-6);
-      min-height: 200vh;
     }
   </style>
-</head>
-  <header>
-    <nav>
-      <button class="mobile-menu-btn">☰</button>
-      
-      <ul class="nav-group-left">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-      </ul>
-      
-      <div class="logo">Sky High</div>
-      
-      <ul class="nav-group-right">
-        <li><a href="#">Crafts</a></li>
-        <li><a href="#">Locations</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      
-      <!-- Mobile menu (hidden on desktop) -->
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Crafts</a></li>
-        <li><a href="#">Locations</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+
+  <nav>
+    <button class="mobile-menu-btn">☰</button>
+
+    <ul class="nav-group-left">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+    </ul>
+
+    <div class="logo">Sky High</div>
+
+    <ul class="nav-group-right">
+      <li><a href="#">Crafts</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Crafts</a></li>
+    <li><a href="#">Locations</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+
   <script>
-    // Toggle mobile menu
-    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
       document.querySelector('.nav-links').classList.toggle('active');
     });
 
-    // Close menu when clicking on a link (optional)
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         document.querySelector('.nav-links').classList.remove('active');
       });
     });
   </script>
-  </header>
+</header>
 
   <br>
   <br>
@@ -593,95 +549,108 @@
                   <div  class=" ">
                   <h2>Our Trusted Partners</h2>
 
-  <div class="partners">
-<style>
-  .carousel-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 20px;
-    box-sizing: border-box;
-  }
 
-  .partners-scroll {
-    display: flex;
-    transition: transform 0.3s ease;
-    width: fit-content;
-  }
 
-  .partner {
-    width: 25vw; /* Each logo takes 25% of viewport width (4 logos per slide) */
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+<div class="partners">
+  <style>
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box;
+    }
 
-  .partner img {
-    max-height: 50px;
-    max-width: 120px;
-    object-fit: contain;
-  }
+    .partners-scroll {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
 
-  .scroll-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: white;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    z-index: 10;
-    padding: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
+    .partner {
+      flex: 0 0 33.33%; /* Show 3 logos at a time */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
 
-  .scroll-button.left {
-    left: 10px;
-  }
+    .partner img {
+      max-height: 50px;
+      max-width: 100px;
+      object-fit: contain;
+    }
 
-  .scroll-button.right {
-    right: 10px;
-  }
-</style>
+    .scroll-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: white;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 10;
+      padding: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
 
-<div class="carousel-container">
-  <button class="scroll-button left" onclick="scrollPartners(-1)">&#10094;</button>
-  <div class="partners-scroll" id="partnersScroll">
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg" alt="Ford"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" alt="SpaceX"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Adidas"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" alt="Airbnb"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
-    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA"></div>
-  <button class="scroll-button right" onclick="scrollPartners(1)">&#10095;</button>
+    .scroll-button.left {
+      left: 10px;
+    }
+
+    .scroll-button.right {
+      right: 10px;
+    }
+
+    /* Responsive behavior: show more logos on small screens */
+    @media (max-width: 768px) {
+      .partner {
+        flex: 0 0 50%; /* 2 logos per view on tablets */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .partner {
+        flex: 0 0 100%; /* 1 logo per view on phones */
+      }
+    }
+  </style>
+
+  <div class="carousel-container">
+    <button class="scroll-button left" onclick="scrollPartners(-1)">&#10094;</button>
+    <div class="partners-scroll" id="partnersScroll">
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg" alt="Ford"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" alt="SpaceX"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Adidas"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" alt="Airbnb"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
+      <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA"></div>
+    </div>
+    <button class="scroll-button right" onclick="scrollPartners(1)">&#10095;</button>
+  </div>
+
+  <script>
+    const partnersScroll = document.getElementById('partnersScroll');
+    const scrollAmount = partnersScroll.clientWidth; // Scroll by visible width (3 items)
+
+    function scrollPartners(direction) {
+      partnersScroll.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  </script>
 </div>
 
-<script>
-  const partnersScroll = document.getElementById('partnersScroll');
-  const totalItems = partnersScroll.children.length;
-  const itemsPerPage = 4;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  let currentPage = 0;
+</div>
 
-  function scrollPartners(direction) {
-    currentPage += direction;
-
-    // Clamp to valid range
-    if (currentPage < 0) currentPage = 0;
-    if (currentPage >= totalPages) currentPage = totalPages - 1;
-
-    // Scroll by full page: each page is 100% of container width
-    const scrollAmount = currentPage * 100;
-    partnersScroll.style.transform = `translateX(-${scrollAmount}vw)`;
-  }
-</script>
   </div>
                 </div>
             
@@ -773,8 +742,138 @@
                     
 <div>
 
+<style>
 
- <style>
+
+    :root {
+      --primary-color: #3498db;
+      --text-dark: #2c3e50;
+      --text-light: #7f8c8d;
+      --bg-light: #f5f5f5;
+      --bg-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      font-size: 14px;
+      padding: 20px 15px;
+    }
+
+    .containerb {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .original-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .original-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-containerb {
+      background-color: var(--bg-white);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      height: fit-content;
+    }
+
+    .faq-list {
+      list-style: none;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ecf0f1;
+      padding: 10px 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      color: var(--primary-color);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.2rem;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      padding-left: 10px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      margin-top: 10px;
+    }
+
+    .extra-image {
+      display: block;
+      margin: 40px auto 0;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 1024px) {
+      .containerb {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 13px;
+      }
+
+      .faq-answer {
+        font-size: 0.85rem;
+      }
+    }
+
+
+
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
@@ -830,18 +929,6 @@
     border-radius: 6px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
         
         .original-image {
@@ -935,6 +1022,26 @@
                 font-size: 1.5rem;
             }
         }
+
+@media (max-width: 1024px) {
+      .containerb {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 13px;
+      }
+
+      .faq-answer {
+        font-size: 0.85rem;
+      }
+    }
+
+
+
+
     </style>
 </head>
 <body>
@@ -1041,6 +1148,17 @@
         });
     </script>
 </body>
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 
