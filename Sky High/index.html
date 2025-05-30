@@ -7,19 +7,251 @@
     <link rel="stylesheet" href="a.css">
 </head>
   <header>
+<style>
+    /* ===== CORE VARIABLES ===== */
+    :root {
+      /* Colors */
+      --space-blue: #0b3d91;
+      --space-dark: #040f2a;
+      --space-light: #e6f7ff;
+      --accent: #ff4d4f;
+      --white: #ffffff;
+      --black: #000000;
+      
+      /* Typography */
+      --text-xs: 0.75rem;  /* 12px */
+      --text-sm: 0.875rem; /* 14px */
+      --text-base: 1rem;   /* 16px */
+      --text-md: 1.125rem; /* 18px */
+      --text-lg: 1.5rem;   /* 24px */
+      --text-xl: 2rem;     /* 32px */
+      
+      /* Spacing */
+      --space-1: 0.25rem;  /* 4px */
+      --space-2: 0.5rem;   /* 8px */
+      --space-3: 0.75rem;  /* 12px */
+      --space-4: 1rem;     /* 16px */
+      --space-5: 1.5rem;   /* 24px */
+      --space-6: 2rem;     /* 32px */
+      
+      /* Shadows */
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      
+      /* Transitions */
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.3s ease;
+    }
+
+    /* ===== NAVIGATION ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+     body {
+      padding-top: 60px; /* Offset for fixed header */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+   
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color:rgb(56, 49, 49);
+      backdrop-filter: blur(10px);
+      padding: var(--space-3) var(--space-4);
+      transition: var(--transition-normal);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      text-decoration: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links {
+      display: none; /* Hidden by default on mobile */
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background-color: var(--space-blue);
+      flex-direction: column;
+      padding: var(--space-4);
+      box-shadow: var(--shadow-md);
+      list-style: none;
+      z-index: 999;
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .nav-links li {
+      margin: var(--space-3) 0;
+      text-align: center;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      font-size: var(--text-md);
+      text-decoration: none;
+      padding: var(--space-2) 0;
+      transition: var(--transition-fast);
+      display: block;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: var(--text-xl);
+      cursor: pointer;
+      padding: var(--space-2);
+      margin-left: auto; /* Push to right side */
+    }
+
+    /* Left navigation group */
+    .nav-group-left {
+      display: none;
+    }
+
+    /* Right navigation group */
+    .nav-group-right {
+      display: none;
+    }
+
+    /* Desktop Navigation */
+    @media (min-width: 901px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    
+      .nav-links {
+        display: none; /* Hide the mobile menu completely */
+      }
+
+      .nav-group-left,
+      .nav-group-right {
+        display: flex;
+        gap: var(--space-4);
+      }
+
+      .nav-group-left {
+        margin-right: auto; /* Push to left side */
+      }
+
+      .nav-group-right {
+        margin-left: auto; /* Push to right side */
+      }
+
+      .logo {
+        position: static;
+        transform: none;
+        margin: 0 var(--space-5);
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .nav-group-left a,
+      .nav-group-right a {
+        color: white;
+        position: relative;
+      }
+
+      .nav-group-left a::after,
+      .nav-group-right a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        color: white;
+        background-color: var(--accent);
+        transition: var(--transition-fast);
+         
+      }
+
+      .nav-group-left a:hover::after,
+      .nav-group-right a:hover::after {
+        width: 100%;
+      }
+    }
+
+    /* Demo content - can be removed */
+    main {
+      padding: var(--space-6);
+      min-height: 200vh;
+    }
+  </style>
+</head>
+  <header>
     <nav>
-      <ul class="nav-links">
+      <button class="mobile-menu-btn">☰</button>
+      
+      <ul class="nav-group-left">
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
       </ul>
+      
       <div class="logo">Sky High</div>
+      
+      <ul class="nav-group-right">
+        <li><a href="#">Crafts</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      
+      <!-- Mobile menu (hidden on desktop) -->
       <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
         <li><a href="#">Crafts</a></li>
         <li><a href="#">Locations</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
+  </header>
+  <script>
+    // Toggle mobile menu
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link (optional)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('active');
+      });
+    });
+  </script>
   </header>
 
   <br>
@@ -356,9 +588,9 @@
                     
             
 
-                  </div>
-
-                <div  class=" ">
+                    </div>            
+                
+                  <div  class=" ">
                   <h2>Our Trusted Partners</h2>
 
   <div class="partners">
@@ -420,6 +652,7 @@
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></div>
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle"></div>
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla"></div>
+    <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg" alt="Ford"></div>
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"></div>
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" alt="SpaceX"></div>
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike"></div>
@@ -427,7 +660,6 @@
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" alt="Airbnb"></div>
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
     <div class="partner"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA"></div>
-  </div>
   <button class="scroll-button right" onclick="scrollPartners(1)">&#10095;</button>
 </div>
 
@@ -453,6 +685,8 @@
   </div>
                 </div>
             
+
+
                 <div>
                   <section class="services" id="services">
         <div class="container">
@@ -1022,30 +1256,9 @@
 
 </div>
   </div>
-
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <style>
+  <div>
+    <style>
         footer {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
@@ -1218,16 +1431,8 @@
         </div>
     </footer>
 </body>
+</div>
+
+
+</body>
 </html>
-
-              </body>
-</html>
-
-
-
-
-
-
-
-
-
