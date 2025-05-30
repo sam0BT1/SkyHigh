@@ -1,3 +1,117 @@
+/* ===== BASE STYLES ===== */
+:root {
+  --primary-color: #3498db;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --bg-light: #f5f5f5;
+  --bg-white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* ===== DEFAULT CONTAINER WIDTHS ===== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* ===== FLEX/GRID HELPERS ===== */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.col {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ===== IMAGES & MEDIA ===== */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== RESPONSIVE TYPOGRAPHY ===== */
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+p {
+  font-size: 1rem;
+}
+
+
+/* ===================================================
+   ✅ RESPONSIVE BREAKPOINTS
+   Apply any layout or style tweaks based on screen size
+=================================================== */
+
+/* === MOBILE FIRST (DEFAULT: <600px) === */
+body {
+  font-size: 14px;
+}
+
+.mobile-hide {
+  display: none !important;
+}
+
+/* === TABLET (600px – 1023px) === */
+@media (min-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+
+  .tablet-col-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .mobile-hide {
+    display: initial !important;
+  }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+
+  .desktop-col-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .desktop-only {
+    display: initial !important;
+  }
+}
 
 
 
